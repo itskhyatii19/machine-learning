@@ -1,67 +1,76 @@
 """
 EDA: Student Performance Dataset
 Author: Khyati Sharma
+Purpose: Understand the dataset and save visual insights
 """
 
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
-df = pd.read_csv("datasets/StudentPerformance.csv")
+# ========== PATH SETUP ==========
+BASE_DIR = os.path.dirname(__file__)
+DATA_PATH = os.path.join(BASE_DIR, "..", "Datasets", "StudentPerformance.csv")
+VISUALS_PATH = os.path.join(BASE_DIR, "visuals")
 
-# Basic Overview
+os.makedirs(VISUALS_PATH, exist_ok=True)
+
+# ========== LOAD DATA ==========
+df = pd.read_csv(DATA_PATH)
+
+print("Dataset Loaded Successfully")
 print(df.head())
 print(df.info())
-print(df.describe())
 
-# Missing Values
-print("\nMissing Values:")
-print(df.isnull().sum())
+TARGET = "Performance Index"
 
-# Target Variable
-target = "math score"
+# ========== HELPER FUNCTION ==========
+def save_plot(filename):
+    plt.savefig(os.path.join(VISUALS_PATH, filename), bbox_inches="tight")
+    plt.show()
+    plt.close()
 
-# Univariate Analysis
+# ========== 1. TARGET DISTRIBUTION ==========
 plt.figure()
-sns.histplot(df[target], kde=True)
-plt.title("Math Score Distribution")
-plt.show()
+sns.histplot(df[TARGET], kde=True)
+plt.title("Performance Index Distribution")
+save_plot("performance_index_distribution.png")
 
-# Categorical Analysis
+# ========== 2. STUDY HOURS VS PERFORMANCE ==========
 plt.figure()
-sns.countplot(x="gender", data=df)
-plt.title("Gender Distribution")
-plt.show()
+sns.scatterplot(
+    x="Hours Studied",
+    y=TARGET,
+    data=df
+)
+plt.title("Hours Studied vs Performance Index")
+save_plot("hours_studied_vs_performance.png")
 
-# Bivariate Analysis
+# ========== 3. EXTRACURRICULAR ACTIVITIES ==========
 plt.figure()
-sns.boxplot(x="test preparation course", y=target, data=df)
-plt.title("Test Prep vs Math Score")
-plt.show()
+sns.boxplot(
+    x="Extracurricular Activities",
+    y=TARGET,
+    data=df
+)
+plt.title("Extracurricular Activities vs Performance Index")
+save_plot("extracurricular_vs_performance.png")
 
-# Multivariate Analysis
+# ========== 4. SLEEP HOURS ==========
+plt.figure()
+sns.scatterplot(
+    x="Sleep Hours",
+    y=TARGET,
+    data=df
+)
+plt.title("Sleep Hours vs Performance Index")
+save_plot("sleep_hours_vs_performance.png")
+
+# ========== 5. CORRELATION ==========
 plt.figure(figsize=(10, 6))
 sns.heatmap(df.corr(), annot=True, cmap="coolwarm")
 plt.title("Correlation Heatmap")
-plt.show()
+save_plot("correlation_heatmap.png")
 
-# Outlier Detection
-plt.figure()
-sns.boxplot(y=df[target])
-plt.title("Outlier Detection")
-plt.show()
-
-# Key Insights
-print("""
-INSIGHTS:
-- Test preparation course significantly improves math scores
-- Reading and writing scores strongly correlate with math score
-- Gender impact is minimal
-""")
-# Recommendations
-print("""RECOMMENDATIONS:
-- Encourage test preparation courses for students   
-- Focus on improving reading and writing skills to boost overall performance
-""")
-# Save cleaned data
-df.to_csv("datasets/StudentPerformance_Cleaned.csv", index=False)
+print("EDA completed successfully. Plots saved in eda/visuals/")
