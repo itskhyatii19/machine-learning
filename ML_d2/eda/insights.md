@@ -1,15 +1,20 @@
-# Exploratory Data Analysis – Key Insights
+# Exploratory Data Analysis – Student Performance Dataset
 
-## Student Performance Dataset
-- Test preparation course improves math scores by ~20%
-- Reading and writing scores are strongly correlated
-- Gender has minimal effect on performance
+## Target Variable
+- Performance Index follows an approximately normal distribution
+- Majority of values lie between 50 and 70
+- Suitable for regression-based modeling
 
-## Movies Dataset
-- Movie budget shows positive correlation with gross revenue
-- Majority of movies are released after 2000
-- English dominates movie production
+## Key Feature Insights
+- Hours Studied shows a strong positive relationship with Performance Index
+- Sleep Hours shows a moderate relationship, suggesting optimal sleep matters
+- Students involved in extracurricular activities show slightly higher median performance
 
-## Overall Learnings
-- Understanding data patterns improves model selection
-- EDA helps identify feature importance and data quality issues
+## Correlation Analysis
+- Previous Scores and Hours Studied are the most influential numeric features
+- No strong multicollinearity observed among numeric variables
+
+## Overall Conclusion
+- Dataset is clean with no missing values
+- Mostly numerical features simplify preprocessing
+- Well-suited for linear and polynomial regression models
