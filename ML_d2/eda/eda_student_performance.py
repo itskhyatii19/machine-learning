@@ -57,7 +57,17 @@ sns.boxplot(
 plt.title("Extracurricular Activities vs Performance Index")
 save_plot("extracurricular_vs_performance.png")
 
-# ========== 4. SLEEP HOURS ==========
+# ========== 4. HOURS STUDIED ==========
+plt.figure()
+sns.scatterplot(
+    x="Hours Studied",
+    y=TARGET,
+    data=df
+)
+plt.title("Hours Studied vs Performance Index")
+save_plot("hours_studied_vs_performance.png")
+
+# ========== 5. SLEEP HOURS ==========
 plt.figure()
 sns.scatterplot(
     x="Sleep Hours",
@@ -67,10 +77,13 @@ sns.scatterplot(
 plt.title("Sleep Hours vs Performance Index")
 save_plot("sleep_hours_vs_performance.png")
 
-# ========== 5. CORRELATION ==========
+# ========== 6. CORRELATION ==========
 plt.figure(figsize=(10, 6))
-sns.heatmap(df.corr(), annot=True, cmap="coolwarm")
-plt.title("Correlation Heatmap")
+
+numeric_df = df.select_dtypes(include=["int64", "float64"])
+sns.heatmap(numeric_df.corr(), annot=True, cmap="coolwarm")
+
+plt.title("Correlation Heatmap (Numeric Features)")
 save_plot("correlation_heatmap.png")
 
-print("EDA completed successfully. Plots saved in eda/visuals/")
+print("EDA completed successfully. Visuals saved in eda/visuals/")
