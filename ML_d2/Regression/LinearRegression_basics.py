@@ -1,110 +1,67 @@
 """
-File: LinearRegression_basics.py
-Purpose: End-to-end Linear Regression workflow using scikit-learn
+File: linear_regression.py
+Purpose: Production-style Linear Regression pipeline
 Author: Khyati Sharma
-
-Steps:
-1. Create dataset
-2. Split features & target
-3. Train-test split
-4. Train model
-5. Evaluate performance
-6. Visualize results
-"""
+ """
 
 import pandas as pd
-import matplotlib.pyplot as plt
+import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    r2_score
-)
+
+from Regression.metrics import regression_metrics
 
 
-def create_dataset():
-    """Create sample dataset"""
-    data = {
-        "hours_studied": [1, 2, 3, 4, 5, 6, 7, 8],
-        "marks": [35, 40, 50, 60, 70, 75, 80, 85]
-    }
-    return pd.DataFrame(data)
+
+# ---------------- LOAD ----------------
+def load_data(path):
+    """Load dataset"""
+    df = pd.read_csv(path)
+    return df
 
 
-def split_features_target(df):
-    """Separate features and target"""
-    X = df[["hours_studied"]]
-    y = df["marks"]
+# ---------------- PREP ----------------
+def prepare_data(df, target_col):
+    """Split features & target"""
+    X = df.drop(columns=[target_col])
+    y = df[target_col]
     return X, y
 
 
-def train_test_data(X, y):
-    """Perform train-test split"""
+# ---------------- SPLIT ----------------
+def split_data(X, y):
     return train_test_split(
-        X, y,
-        test_size=0.2,
-        random_state=42
+        X, y, test_size=0.2, random_state=42
     )
 
 
+# ---------------- TRAIN ----------------
 def train_model(X_train, y_train):
-    """Train Linear Regression model"""
     model = LinearRegression()
     model.fit(X_train, y_train)
     return model
 
 
-def evaluate_model(y_test, predictions):
-    """Evaluate model performance"""
-    mae = mean_absolute_error(y_test, predictions)
-    mse = mean_squared_error(y_test, predictions)
-    r2 = r2_score(y_test, predictions)
-
-    print("\nModel Evaluation")
-    print("MAE:", mae)
-    print("MSE:", mse)
-    print("R² Score:", r2)
-
-
-def visualize_results(X, y, X_test, predictions):
-    """Plot regression results"""
-    plt.figure(figsize=(8, 5))
-
-    plt.scatter(X, y, label="Actual Data")
-    plt.plot(
-        X_test,
-        predictions,
-        linewidth=2,
-        label="Regression Line"
-    )
-
-    plt.xlabel("Hours Studied")
-    plt.ylabel("Marks Obtained")
-    plt.title("Linear Regression: Study Hours vs Marks")
-    plt.legend()
-    plt.show()
-
-
+# ---------------- MAIN ----------------
 def main():
-    df = create_dataset()
-    print("\nDataset:\n", df)
+    path = "../datasets/student.csv"   # change file name
+    target = "marks"                   # change target
 
-    X, y = split_features_target(df)
+    df = load_data(path)
 
-    X_train, X_test, y_train, y_test = train_test_data(X, y)
+    X, y = prepare_data(df, target)
+
+    X_train, X_test, y_train, y_test = split_data(X, y)
 
     model = train_model(X_train, y_train)
 
-    predictions = model.predict(X_test)
+    preds = model.predict(X_test)
 
-    print("\nPredictions:", predictions)
-    print("Actual:", y_test.values)
+    regression_metrics(y_test, preds)
 
-    evaluate_model(y_test, predictions)
-
-    visualize_results(X, y, X_test, predictions)
+    joblib.dump(model, "linear_model.pkl")
+    print("\nModel saved as linear_model.pkl")
 
 
 if __name__ == "__main__":
