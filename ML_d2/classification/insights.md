@@ -76,6 +76,29 @@ SVM provides strong decision boundaries but is computationally more expensive th
 
 ---
 
+## Model Comparison Summary
+
+| Model | Accuracy | Macro F1-score | Key Strength | Key Limitation |
+|------|---------|----------------|--------------|----------------|
+| Logistic Regression | ~0.95 | ~0.94 | Stable, fast, well-generalized | Assumes linear boundaries |
+| Decision Tree | ~0.92 | ~0.91 | Highly interpretable | Prone to overfitting |
+| Random Forest | ~0.96 | ~0.95 | Robust, strong performance | Less interpretable |
+| SVM | ~0.94 | ~0.93 | Strong decision boundaries | Computationally expensive |
+
+---
+
+## Final Observations
+- Random Forest achieved the best overall performance
+- Logistic Regression provided strong baseline results with good generalization
+- Decision Trees were easier to interpret but less stable
+- SVM performed competitively but required careful scaling
+
+## Model Selection Insight
+For production use, Random Forest is preferred due to robustness.
+For interpretability and simplicity, Logistic Regression or Decision Trees are suitable.
+
+---
+
 ## Conclusion
 Both models performed well for student performance classification.
 Logistic Regression offers stability and generalization, while Decision Trees provide interpretability.
