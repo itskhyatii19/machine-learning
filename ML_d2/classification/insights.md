@@ -36,6 +36,17 @@ Decision Trees can capture non-linear patterns but may overfit if not constraine
 
 ---
 
+### Random Forest
+- Ensemble of multiple decision trees
+- Reduces overfitting compared to a single tree
+- Strong and stable performance across classes
+
+**Observation:**  
+Random Forest balances interpretability and performance, making it suitable for real-world classification tasks.
+
+---
+
+
 ## Model Comparison Summary
 
 | Aspect | Logistic Regression | Decision Tree |
