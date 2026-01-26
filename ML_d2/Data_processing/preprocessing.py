@@ -123,5 +123,26 @@ def main():
     X_bal, y_bal = balance_classes(X_train_scaled, y_train_enc)
 
 
+def encode_extracurricular(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Encode 'Extracurricular Activities' column (Yes/No → 1/0)
+    """
+    df = df.copy()
+    df["Extracurricular Activities"] = df["Extracurricular Activities"].map(
+        {"Yes": 1, "No": 0}
+    )
+    return df
+
+
+def scale_features(X: pd.DataFrame):
+    """
+    Scale numerical features using StandardScaler
+    """
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+    return X_scaled
+
+
+
 if __name__ == "__main__":
     main()
