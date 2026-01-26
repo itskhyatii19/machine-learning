@@ -46,6 +46,15 @@ Random Forest balances interpretability and performance, making it suitable for 
 
 ---
 
+### Support Vector Machine (SVM)
+- Margin-based classifier
+- Feature scaling required
+- Effective in high-dimensional spaces
+
+**Observation:**  
+SVM provides strong decision boundaries but is computationally more expensive than tree-based models.
+
+---
 
 ## Model Comparison Summary
 
