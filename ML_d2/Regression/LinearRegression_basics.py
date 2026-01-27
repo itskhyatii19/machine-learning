@@ -1,68 +1,62 @@
 """
-File: linear_regression.py
-Purpose: Production-style Linear Regression pipeline
+Regression: Linear Regression – Student Performance
 Author: Khyati Sharma
- """
+Purpose: Predict student performance index using Linear Regression
+"""
+
+import sys
+import os
+
+# ========== PATH SETUP ==========
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import pandas as pd
-import joblib
+import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-from Regression.metrics import regression_metrics
+from Data_processing.preprocessing import (
+    encode_extracurricular,
+    scale_features
+)
 
+# ========== PATH ==========
+BASE_DIR = os.path.dirname(__file__)
+DATA_PATH = os.path.join(BASE_DIR, "..", "Datasets", "StudentPerformance.csv")
 
+# ========== LOAD DATA ==========
+df = pd.read_csv(DATA_PATH)
 
-# ---------------- LOAD ----------------
-def load_data(path):
-    """Load dataset"""
-    df = pd.read_csv(path)
-    return df
+TARGET = "Performance Index"
 
+# ========== FEATURES & TARGET ==========
+X = df.drop(columns=[TARGET])
+y = df[TARGET]
 
-# ---------------- PREP ----------------
-def prepare_data(df, target_col):
-    """Split features & target"""
-    X = df.drop(columns=[target_col])
-    y = df[target_col]
-    return X, y
+# Encode categorical feature
+X = encode_extracurricular(X)
 
+# Scale features (required for Linear Regression)
+X_scaled = scale_features(X)
 
-# ---------------- SPLIT ----------------
-def split_data(X, y):
-    return train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
+# ========== TRAIN TEST SPLIT ==========
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled,
+    y,
+    test_size=0.2,
+    random_state=42
+)
 
+# ========== MODEL ==========
+model = LinearRegression()
+model.fit(X_train, y_train)
 
-# ---------------- TRAIN ----------------
-def train_model(X_train, y_train):
-    model = LinearRegression()
-    model.fit(X_train, y_train)
-    return model
+# ========== EVALUATION ==========
+y_pred = model.predict(X_test)
 
-
-# ---------------- MAIN ----------------
-def main():
-    path = "../datasets/student.csv"   # change file name
-    target = "marks"                   # change target
-
-    df = load_data(path)
-
-    X, y = prepare_data(df, target)
-
-    X_train, X_test, y_train, y_test = split_data(X, y)
-
-    model = train_model(X_train, y_train)
-
-    preds = model.predict(X_test)
-
-    regression_metrics(y_test, preds)
-
-    joblib.dump(model, "linear_model.pkl")
-    print("\nModel saved as linear_model.pkl")
-
-
-if __name__ == "__main__":
-    main()
+print("Linear Regression Evaluation")
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("R2 Score:", r2_score(y_test, y_pred))
