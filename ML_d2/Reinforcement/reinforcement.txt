@@ -123,3 +123,123 @@ Q5. What’s the difference between a SQL JOIN and filtering with WHERE?
 =>WHERE is used to:Filter rows inside same table
   JOIN is used to Combine multiple tables based on common column
 _____________________
+Q1. Why is EDA performed before building any machine learning model?
+=>
+Q2. What is the difference between EDA and preprocessing?
+=>
+Q3. When should you use a histogram vs boxplot vs scatter plot?
+=>
+Q4. Why should categorical variables not be included directly in a correlation heatmap?
+=>
+Q5. How does EDA help in choosing the type of model (linear vs non-linear)
+=>
+
+______________________
+Q1. Why is it important to centralize preprocessing logic in a single module?
+=>
+Q2. What problems can occur if you scale features unnecessarily?
+=>
+Q3. Why is .copy() used when modifying pandas DataFrames?
+=>
+Q4. What is the difference between encoding features and encoding targets?
+=>
+Q5. How does improper preprocessing lead to data leakage?
+=>
+______________________
+Q1. What assumptions does Linear Regression make about the data?
+=>
+Q2. Why is feature scaling important for Linear Regression?
+=>
+Q3. How does Polynomial Regression capture non-linear relationships?
+=>
+Q4. Why does increasing polynomial degree increase the risk of overfitting?
+=>
+Q5. When would you prefer Linear Regression over Polynomial Regression?
+=>
+______________________
+What does MAE measure and when is it preferred?
+
+How is MSE different from MAE, and why does it penalize large errors more?
+
+What is RMSE, and why is it often easier to interpret than MSE?
+
+What does a negative R² score indicate?
+
+Why should multiple metrics be used instead of relying on just one?
+______________________
+How is a classification problem different from a regression problem?
+
+Why did you convert a continuous target into Low / Medium / High categories?
+
+What is the role of stratified train-test split in classification?
+
+Why should the target variable be encoded separately from features?
+
+What are the risks of imbalanced classes in classification tasks?
+
+______________________
+Why is Logistic Regression considered a linear classifier?
+
+Why is feature scaling critical for Logistic Regression?
+
+What does the max_iter parameter control?
+
+How does Logistic Regression handle multi-class classification?
+
+Why can Logistic Regression fail to converge on unscaled data?
+______________________
+Why do Decision Trees not require feature scaling?
+
+What causes Decision Trees to overfit?
+
+How does Random Forest reduce overfitting compared to a single tree?
+
+Why is Random Forest less interpretable than Decision Tree?
+
+When would you prefer a tree-based model over a linear model?
+
+______________________
+What does SVM try to maximize when separating classes?
+
+Why is feature scaling mandatory for SVM?
+
+What is the role of the kernel in SVM?
+
+Why is SVM computationally expensive for large datasets?
+
+When is SVM a better choice than Logistic Regression?
+
+______________________
+Why is accuracy alone not sufficient for evaluating classification models?
+
+What does macro F1-score indicate?
+
+Why is it important to compare multiple models on the same dataset?
+
+How do you decide between two models with similar accuracy?
+
+Why should model selection consider interpretability vs performance?
+
+______________________
+What problem do scikit-learn pipelines solve?
+
+Why is ColumnTransformer useful in pipelines?
+
+How do pipelines prevent preprocessing mistakes during inference?
+
+Why is shared preprocessing better than model-specific preprocessing?
+
+How does clean folder structure improve collaboration and maintainability?
+
+______________________
+Why should commits be small and descriptive?
+
+What is the benefit of separating basics and applied projects?
+
+Why should generated files (plots, temp files) be added to .gitignore?
+
+How does modular code help during experimentation?
+
+What signals does a clean GitHub repo send to recruiters?
+
+______________________
