@@ -1,134 +1,132 @@
-# 🚀 Machine Learning Practice Repository  
+# Machine Learning – Core Concepts & Experiments
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square&logo=python)
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn-orange?style=flat-square&logo=scikit-learn)
-![Data Science](https://img.shields.io/badge/Data%20Science-Pandas-green?style=flat-square)
-![Git](https://img.shields.io/badge/Version%20Control-Git-red?style=flat-square&logo=git)
-![Status](https://img.shields.io/badge/Status-Learning-success?style=flat-square)
-
-**Author:** Khyati Sharma  
-🎯 **Goal:** Build strong ML fundamentals through hands-on practice & mini projects
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Core%20Concepts-success)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
-## 📌 About
+## Overview
 
-This repository contains my **structured learning journey** in Machine Learning.  
-Each folder focuses on a **specific concept** with:
+This repository contains **curated implementations of core machine learning concepts**, organized by topic and implemented using clean, modular Python code.
 
-- Clean code  
-- Real datasets  
-- Step-by-step implementations  
-- Proper evaluation  
-
-Built for:
-✔ Skill-building  
-✔ Internship preparation  
-✔ Strong portfolio  
+The focus is on **understanding model behavior, data workflows, and evaluation techniques**, rather than building end-to-end applications.  
+It complements larger ML projects by strengthening foundational knowledge.
 
 ---
 
-## 📁 Project Structure
+## Topics Covered
+
+### Data Processing
+- CSV, JSON, and SQL data handling
+- API-based data collection
+- Web scraping pipelines
+- Data cleaning and preprocessing
+
+### Exploratory Data Analysis (EDA)
+- Student performance dataset analysis
+- Movie metadata analysis
+- Feature distributions and correlations
+- Visualization utilities
+- Structured insights documentation
+
+### Regression
+- Linear Regression
+- Polynomial Regression
+- Model evaluation (MAE, R²)
+- Performance insights and interpretation
+
+### Classification
+- Logistic Regression
+- Decision Trees
+- Random Forest
+- Support Vector Machines (SVM)
+- Comparative model behavior analysis
+
+### Pipelines
+- Modular ML pipeline design
+- Reusable preprocessing and training flows
+
+### Reinforcement & Revision
+- Concept reinforcement notes
+- Daily revision questions
+- ML theory + implementation alignment
+
+---
+
+## Repository Structure
 
 ```text
-machine_learning/
+machine-learning/
+│
+├── classification/
+│   ├── decision_tree.py
+│   ├── logistic_regression.py
+│   ├── random_forest.py
+│   ├── svm.py
+│   └── insights.md
 │
 ├── data_processing/
-│   ├── csv_handler.py
-│   ├── json_handler.py
-│   ├── sql_handler.py
-│   └── preprocessing.py
+│   ├── api_data_collection_pipeline.py
+│   ├── csv_datahandling.py
+│   ├── json_handling.py
+│   ├── sql_handling.py
+│   ├── preprocessing.py
+│   └── web_scraping_pipeline.py
 │
 ├── datasets/
 │
-├── regression/
-│   ├── linear_regression.py
-│   ├── polynomial_regression.py
-│   └── metrics.py
-│
-├── classification/
-│   ├── logistic_regression.py
-│   ├── knn.py
-│   └── evaluation.py
+├── eda/
+│   ├── eda_movies_dataset.py
+│   ├── eda_student_performance.py
+│   ├── eda_template.py
+│   ├── eda_utils.py
+│   ├── insights.md
+│   └── visuals/
 │
 ├── pipelines/
+│   ├── classification_pipeline.py
 │   └── ml_pipeline.py
 │
-├── notebooks/
+├── regression/
+│   ├── LinearRegression_basics.py
+│   ├── polynomialRegression_basics.py
+│   ├── metrics.py
+│   └── insights.md
+│
+├── reinforcement/
+│
+├── .gitignore
 └── README.md
-✅ Topics Covered
-📊 Data Processing
-CSV handling
+```
+### Design Principles
+```text
+-Script-based implementations for clarity
+-One folder per ML concept
+-Minimal but meaningful dependencies
+-Emphasis on evaluation and interpretation
+-Clean, version-controlled workflow
+```
+### What This Repository Demonstrates
+```text
+-Strong grasp of ML fundamentals
+-Ability to organize ML work systematically
+-Practical understanding of data workflows
+-Awareness of model limitations and trade-offs
+-Clean Python coding practices for ML
+```
+### Future Extensions
+```text
+-Feature engineering experiments
+-Hyperparameter tuning comparisons
+```
+### Visualization modules
+Integration with end-to-end ML projects.
+Lightweight deployment demos.
 
-JSON handling
+## Author
+### Khyati Sharma
+B.Tech in Artificial Intelligence
 
-SQL dataset processing
-
-Missing value handling
-
-Chunking large files
-
-Encoding categorical data
-
-📈 Regression
-Linear Regression
-
-Polynomial Regression
-
-Model training & testing
-
-Evaluation (MAE, R²)
-
-Visualization
-
-🔁 Reinforcement Practice
-Daily revision questions
-
-ML theory understanding
-
-Git & data handling concepts
-
-🛠 Technologies Used
-Python
-
-Pandas
-
-NumPy
-
-Matplotlib
-
-Scikit-learn
-
-Git & GitHub
-
-🎯 Purpose of This Repo
-✔ Build strong ML foundation
-✔ Prepare for internships
-✔ Practice real datasets
-✔ Improve GitHub profile
-✔ Create portfolio projects
-
-📈 Learning Approach
-Write everything from scratch
-
-Add detailed comments
-
-Practice daily reinforcement
-
-Clean folder structure
-
-Version control using Git
-
-🔥 Future Plans
-Advanced classification models
-
-Feature engineering
-
-EDA projects
-
-Kaggle datasets
-
-Model deployment
-
-📬 Connect With Me
-GitHub: @itskhyatii19
+GitHub: https://github.com/itskhyatii19
