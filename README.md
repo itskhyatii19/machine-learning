@@ -84,6 +84,12 @@ machine-learning/
 │   ├── eda_utils.py
 │   ├── insights.md
 │   └── visuals/
+├──feature_engineering/
+│   ├── __init__.py
+│   ├── encoding.py
+│   ├── scaling.py
+│   ├── feature_selection.py
+│   └── feature_importance.py
 │
 ├── pipelines/
 │   ├── classification_pipeline.py
