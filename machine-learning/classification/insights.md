@@ -56,6 +56,18 @@ SVM provides strong decision boundaries but is computationally more expensive th
 
 ---
 
+## Feature Importance Analysis (Random Forest)
+
+Random Forest was used to analyze feature importance for interpretability.
+
+**Observations:**
+- Academic features such as Hours Studied and Previous Scores contributed most to predictions.
+- Lifestyle features like Sleep Hours had moderate influence.
+- Extracurricular Activities showed comparatively lower impact.
+
+This analysis improves model transparency and supports informed feature selection.
+
+---
 ## Model Comparison Summary
 
 | Aspect | Logistic Regression | Decision Tree |
