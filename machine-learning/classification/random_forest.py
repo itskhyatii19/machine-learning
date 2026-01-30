@@ -16,7 +16,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 
-from Data_processing.preprocessing import encode_extracurricular
+from data_processing.preprocessing import encode_extracurricular
+from feature_engineering.feature_importance import get_feature_importance
+
 
 # ========== PATH ==========
 BASE_DIR = os.path.dirname(__file__)
@@ -59,6 +61,14 @@ model = RandomForestClassifier(
     random_state=42
 )
 model.fit(X_train, y_train)
+# ========== FEATURE IMPORTANCE ==========
+feature_names = X.columns.tolist()
+
+importance_df = get_feature_importance(model, feature_names)
+
+print("\nFeature Importance (Random Forest)")
+print(importance_df)
+
 
 # ========== EVALUATION ==========
 y_pred = model.predict(X_test)
