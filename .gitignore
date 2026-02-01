@@ -24,3 +24,8 @@ Scripts/
 Include/
 
 ml_basics.txt
+profiling_env/
+
+feature_engineering.txt
+
+eda/**/visuals/*.html
