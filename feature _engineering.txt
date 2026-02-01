@@ -1,0 +1,258 @@
+Feature Engineering is the process of preparing and transforming raw data into meaningful inputs for machine learning models.
+
+Think of it as:
+
+“Helping the model understand the data better.”
+
+1️⃣ Missing Values Imputation
+❓ What are missing values?
+
+Missing values occur when data is not recorded.
+
+Example:
+
+Age: 22, 35, NaN, 40
+
+❓ Why handle missing values?
+
+ML models cannot work with NaN
+
+Missing data can bias predictions
+
+Ignoring them can crash your code
+
+🛠 Common methods
+a) Mean / Median Imputation (Numerical)
+
+Best when data is normally distributed.
+
+df["Age"].fillna(df["Age"].mean(), inplace=True)
+
+
+✔ Mean → symmetric data
+✔ Median → skewed data / outliers
+
+b) Mode Imputation (Categorical)
+
+Best for categorical features.
+
+df["Embarked"].fillna(df["Embarked"].mode()[0], inplace=True)
+
+c) Drop column / row
+
+Use only if missing % is very high.
+
+df.drop(columns=["Cabin"], inplace=True)
+
+🧠 Interview tip
+
+“I choose imputation methods based on feature type and distribution.”
+
+2️⃣ Handling Categorical Values
+❓ What are categorical values?
+
+Values that represent categories, not numbers.
+
+Example:
+
+Sex → Male / Female
+City → Delhi / Mumbai
+
+❓ Why encode them?
+
+ML models only understand numbers, not text.
+
+🛠 Encoding techniques
+a) Label Encoding (Ordinal data)
+
+Use when order matters.
+
+Low → 0, Medium → 1, High → 2
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df["Grade"] = le.fit_transform(df["Grade"])
+
+b) One-Hot Encoding (Nominal data)
+
+Use when no order exists.
+
+pd.get_dummies(df, columns=["Sex"], drop_first=True)
+
+
+✔ Prevents model bias
+✔ Avoids fake ordering
+
+🧠 Interview tip
+
+“I use label encoding for ordinal data and one-hot encoding for nominal data.”
+
+3️⃣ Outlier Detection
+❓ What are outliers?
+
+Extreme values that are far from most data.
+
+Example:
+
+Salary: 30k, 32k, 35k, 1,000k ❌
+
+❓ Why detect outliers?
+
+Can skew mean and variance
+
+Can mislead models
+
+Especially harmful for linear models
+
+🛠 Common methods
+a) Boxplot / IQR Method
+Q1 = df["Age"].quantile(0.25)
+Q3 = df["Age"].quantile(0.75)
+IQR = Q3 - Q1
+
+
+Outlier condition:
+
+< Q1 − 1.5×IQR or > Q3 + 1.5×IQR
+
+b) Z-Score (for normal distributions)
+from scipy.stats import zscore
+z = zscore(df["Age"])
+
+🧠 Important
+
+❗ Don’t blindly remove outliers — sometimes they carry meaning.
+
+4️⃣ Feature Scaling
+❓ What is feature scaling?
+
+Bringing numerical features to a similar range.
+
+Example:
+
+Age: 18–60
+Salary: 20,000–1,00,000
+
+❓ Why scale features?
+
+Distance-based models need it (KNN, SVM)
+
+Gradient descent converges faster
+
+Prevents dominance of large-scale features
+
+🛠 Common techniques
+a) Standardization (Mean = 0, Std = 1)
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+
+✔ Used for Logistic Regression, SVM
+
+b) Min-Max Scaling (0 to 1)
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+
+
+✔ Used when bounded range is needed
+
+🧠 Rule of thumb
+
+Tree models → scaling not required
+
+Linear / distance models → scaling required
+
+5️⃣ Feature Construction (Feature Creation)
+❓ What is feature construction?
+
+Creating new features from existing ones.
+
+❓ Why do it?
+
+Captures hidden patterns
+
+Improves model performance
+
+Makes data more informative
+
+🛠 Examples
+a) Family Size (Titanic)
+df["FamilySize"] = df["SibSp"] + df["Parch"] + 1
+
+b) IsAlone Feature
+df["IsAlone"] = (df["FamilySize"] == 1).astype(int)
+
+c) Study Efficiency (Student data)
+df["StudyEfficiency"] = df["Hours Studied"] / df["Sleep Hours"]
+
+🧠 Interview tip
+
+“I create features based on EDA insights, not randomly.”
+
+6️⃣ Feature Selection
+❓ What is feature selection?
+
+Choosing the most relevant features and removing unnecessary ones.
+
+❓ Why select features?
+
+Reduces overfitting
+
+Improves speed
+
+Makes models interpretable
+
+🛠 Methods
+a) Correlation-based selection
+df.corr()["target"]
+
+b) Model-based importance
+from sklearn.ensemble import RandomForestClassifier
+model.feature_importances_
+
+c) Manual selection
+
+Based on domain knowledge + EDA.
+
+🧠 Key idea
+
+“Not all features help — some add noise.”
+
+7️⃣ Feature Extraction
+❓ What is feature extraction?
+
+Transforming data into a lower-dimensional representation.
+
+❓ Why use it?
+
+High-dimensional data
+
+Text, images, signals
+
+Remove redundancy
+
+🛠 Examples
+a) PCA (Numerical)
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+X_reduced = pca.fit_transform(X)
+
+b) Text Vectorization
+
+TF-IDF
+
+Word embeddings
+
+🧠 Difference to remember
+Feature Selection	Feature Extraction
+Keeps original features	Creates new features
+Drops some columns	Transforms space
+✅ Final Summary (Revision-Friendly)
+Missing values → Fill or remove
+Categorical values → Encode
+Outliers → Detect carefully
+Scaling → Normalize ranges
+Feature construction → Create smarter features
+Feature selection → Remove noise
+Feature extraction → Reduce dimensionality
