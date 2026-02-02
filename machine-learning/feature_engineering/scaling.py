@@ -19,3 +19,4 @@ def standard_scale(X):
     """
     scaler = StandardScaler()
     return scaler.fit_transform(X)
+# Note: StandardScaler standardizes features by removing the mean and scaling to unit variance. This means the distrinution of the data remains the ssme it is the scaling that changes.
